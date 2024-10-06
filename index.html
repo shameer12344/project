@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Percentage Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Exam Percentage Calculator</h1>
+        <div class="calculator">
+            <h2>Enter Total and Obtained Marks for Each Subject</h2>
+            <div class="subject">
+                <label><i>English Total Marks:</i></label>
+                <input type="number" id="englishTotal" placeholder="Total Marks" required>
+                <input type="number" id="englishObtained" placeholder="Obtained Marks" required>
+            </div>
+            <div class="subject">
+                <label><i>Urdu Total Marks:</i></label>
+                <input type="number" id="urduTotal" placeholder="Total Marks" required>
+                <input type="number" id="urduObtained" placeholder="Obtained Marks" required>
+            </div>
+            <div class="subject">
+                <label><i>Maths Total Marks:</i></label>
+                <input type="number" id="mathsTotal" placeholder="Total Marks" required>
+                <input type="number" id="mathsObtained" placeholder="Obtained Marks" required>
+            </div>
+            <div class="subject">
+                <label><i>Islamiat Total Marks:</i></label>
+                <input type="number" id="islamiatTotal" placeholder="Total Marks" required>
+                <input type="number" id="islamiatObtained" placeholder="Obtained Marks" required>
+            </div>
+            <div class="subject">
+                <label><i>Computer Total Marks:</i></label>
+                <input type="number" id="computerTotal" placeholder="Total Marks" required>
+                <input type="number" id="computerObtained" placeholder="Obtained Marks" required>
+            </div>
+            <div class="subject">
+                <label><i>Social Studies Total Marks:</i></label>
+                <input type="number" id="socialTotal" placeholder="Total Marks" required>
+                <input type="number" id="socialObtained" placeholder="Obtained Marks" required>
+            </div>
+            <div class="subject">
+                <label><i>Science Total Marks:</i></label>
+                <input type="number" id="scienceTotal" placeholder="Total Marks" required>
+                <input type="number" id="scienceObtained" placeholder="Obtained Marks" required>
+            </div>
+            <div class="subject">
+                <label><i>Physics Total Marks:</i></label>
+                <input type="number" id="physicsTotal" placeholder="Total Marks" required>
+                <input type="number" id="physicsObtained" placeholder="Obtained Marks" required>
+            </div>
+            <div class="subject">
+                <label><i>Chemistry Total Marks:</i></label>
+                <input type="number" id="chemistryTotal" placeholder="Total Marks" required>
+                <input type="number" id="chemistryObtained" placeholder="Obtained Marks" required>
+            </div>
+            <div class="subject">
+                <label><i>Biology Total Marks:</i></label>
+                <input type="number" id="biologyTotal" placeholder="Total Marks" required>
+                <input type="number" id="biologyObtained" placeholder="Obtained Marks" required>
+            </div>
+            <div class="subject">
+                <label><i>Sindhi Total Marks:</i></label>
+                <input type="number" id="SindhiTotal" placeholder="Total Marks" required>
+                <input type="number" id="SindhiObtained" placeholder="Obtained Marks" required>
+            </div>
+            <button onclick="calculatePercentage()">Calculate Percentage</button>
+            <div id="result" class="result"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+<style>
+    * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: linear-gradient(rgb(100, 100, 196), rgb(132, 219, 132),rgb(255, 221, 157));
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 160vh;
+}
+
+.container {
+    text-align: center;
+    padding: 30px;
+    border-radius: 10px;
+   /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);*/
+    width:190%;
+    max-width: 500px;
+    background-color:transparent;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-bottom: 15px;
+}
+
+.subject {
+    margin: 10px 0;
+    font-size: 20px;
+}
+
+label {
+    display: block;
+    margin: 5px 0;
+}
+
+input {
+    width: calc(48% - 20px);
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #28a745;
+}
+
+</style>
+<script>
+    function calculatePercentage() {
+    const subjects = [
+        { total: 'englishTotal', obtained: 'englishObtained' },
+        { total: 'urduTotal', obtained: 'urduObtained' },
+        { total: 'mathsTotal', obtained: 'mathsObtained' },
+        { total: 'islamiatTotal', obtained: 'islamiatObtained' },
+        { total: 'computerTotal', obtained: 'computerObtained' },
+        { total: 'socialTotal', obtained: 'socialObtained' },
+        { total: 'scienceTotal', obtained: 'scienceObtained' },
+        { total: 'physicsTotal', obtained: 'physicsObtained' },
+        { total: 'chemistryTotal', obtained: 'chemistryObtained' },
+        { total: 'biologyTotal', obtained: 'biologyObtained' }
+    ];
+
+    let totalMarks = 0;
+    let totalObtained = 0;
+
+    for (const subject of subjects) {
+        const total = parseFloat(document.getElementById(subject.total).value);
+        const obtained = parseFloat(document.getElementById(subject.obtained).value);
+
+        if (isNaN(total) || isNaN(obtained) || total <= 0 || obtained < 0 || obtained > total) {
+            document.getElementById('result').innerText = 'Please enter valid marks.';
+            return;
+        }
+
+        totalMarks += total;
+        totalObtained += obtained;
+    }
+
+    const percentage = (totalObtained / totalMarks) * 100;
+    document.getElementById('result').innerText = `Total Percentage: ${percentage.toFixed(2)}%`;
+}
+
+</script>
